@@ -8,11 +8,11 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Coole\Goaop;
+namespace Coole\Goaop\Tests\feature\app\Service;
 
-class PackageSkeleton
+class LoggingService
 {
-    public static function test()
+    public static function logging()
     {
         return true;
     }
