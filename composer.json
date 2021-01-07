@@ -1,0 +1,92 @@
+{
+    "name": "coolephp/goaop",
+    "description": "Bringing the goaop to Coole. - 将 goaop 集成到 Coole。",
+    "keywords": [
+        "aop",
+        "goaop",
+        "aspect",
+        "coole",
+        "php"
+    ],
+    "homepage": "https://github.com/coolephp/goaop",
+    "support": {
+        "issues": "https://github.com/coolephp/goaop/issues",
+        "source": "https://github.com/coolephp/goaop"
+    },
+    "authors": [
+        {
+            "name": "guanguans",
+            "email": "ityaozm@gmail.com",
+            "homepage": "https://www.guanguans.cn",
+            "role": "developer"
+        }
+    ],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "goaop/framework": "^2.0",
+        "guanguans/coole": "^1.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "vimeo/psalm": "^3.11",
+        "mockery/mockery": "^1.2",
+        "brainmaestro/composer-git-hooks": "^2.7",
+        "phpunit/phpunit": "^7 || ^8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Coole\\Goaop\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Coole\\Goaop\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "composer test",
+                "composer check-style"
+            ],
+            "pre-push": [
+                "composer test",
+                "composer check-style"
+            ]
+        }
+    },
+    "funding": [
+        {
+            "type": "wechat",
+            "url": "https://www.guanguans.cn/images/wechat.jpeg"
+        }
+    ],
+    "scripts": {
+        "post-update-cmd": [
+            "cghooks update"
+        ],
+        "post-merge": "composer install",
+        "post-install-cmd": [
+            "cghooks add --ignore-lock",
+            "cghooks update"
+        ],
+        "cghooks": "./vendor/bin/cghooks",
+        "check-style": "php-cs-fixer fix --using-cache=no --diff --config=.php_cs.dist --dry-run --ansi",
+        "fix-style": "php-cs-fixer fix --using-cache=no --config=.php_cs.dist --ansi",
+        "psalm": "./vendor/bin/psalm",
+        "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
+        "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
+    },
+    "scripts-descriptions": {
+        "check-style": "Run style checks (only dry run - no fixing!).",
+        "fix-style": "Run style checks and fix violations.",
+        "test": "Run all tests.",
+        "test-coverage": "Run all tests with coverage."
+    }
+}
