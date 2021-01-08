@@ -24,8 +24,8 @@ class LoggingServiceTest extends TestCase
 
     public function testLoggingAspect()
     {
-        $this->assertTrue(true);
-        // $this->assertTrue(LoggingService::logging());
-        // $this->assertFileExists(base_path('runtime/logging.log'));
+        $this->assertTrue(LoggingService::logging());
+        $this->assertFileExists(base_path('runtime/logging-before.log'));
+        $this->assertFileExists(base_path('runtime/logging-after.log'));
     }
 }

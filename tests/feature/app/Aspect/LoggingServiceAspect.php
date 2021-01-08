@@ -23,7 +23,7 @@ class LoggingServiceAspect implements Aspect
      * Method that will be called before real method.
      *
      * @param MethodInvocation $invocation Invocation
-     * @Before("execution(public Coole\Goaop\Tests\feature\app\Service\LoggingService::*(*))")
+     * @Before("execution(public Coole\Goaop\Tests\feature\app\Service\LoggingService::logging(*))")
      */
     public function beforeMethodExecution(MethodInvocation $invocation)
     {
@@ -34,7 +34,7 @@ class LoggingServiceAspect implements Aspect
      * Method that will be called after real method.
      *
      * @param MethodInvocation $invocation Invocation
-     * @After("execution(public Coole\Goaop\Tests\feature\app\Service\LoggingService::*(*))")
+     * @After("execution(public Coole\Goaop\Tests\feature\app\Service\LoggingService::logging(*))")
      */
     public function afterMethodExecution(MethodInvocation $invocation)
     {

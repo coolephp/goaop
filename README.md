@@ -24,10 +24,36 @@ $ composer require coolephp/goaop -vvv
 ### Configuration
 
 1. Copy `goaop/config/goaop.php` to `coole-skeleton/config/goaop.php`.
-2. Add a configuration for aspect.
+2. Config `\Coole\Goaop\GoAopServiceProvider::class` service provider.
 
 ``` php
 <?php
+
+return [
+    /*
+     * App 名称
+     */
+    'name' => env('APP_NAME', 'Coole'),
+    
+    ...
+
+    /*
+     * 第三方服务
+     */
+    'providers' => [
+        \Coole\Goaop\GoAopServiceProvider::class
+    ],
+    
+    ...
+];
+
+```
+
+3. Add a aspect configuration for `config/goaop.php`.
+
+``` php
+<?php
+
 return [
     /*
      * AOP Debug Mode
@@ -40,7 +66,7 @@ return [
      * Yours aspects
      */
     'aspects' => [
-        \app\Service\LoggingServiceAspect::class,
+        \App\Aspect\LoggingServiceAspect::class,
     ],
 ];
 ```
@@ -50,7 +76,7 @@ return [
 ``` php
 <?php
 
-namespace app\Service;
+namespace App\Service;
 
 class LoggingService
 {
@@ -61,12 +87,12 @@ class LoggingService
 }
 ```
 
-### Create a aspect `app\Service\LoggingServiceAspect`
+### Create a aspect `App\Aspect\LoggingServiceAspect`
 
 ``` php
 <?php
 
-namespace app\Aspect;
+namespace App\Aspect;
 
 use Go\Aop\Aspect;
 use Go\Aop\Intercept\MethodInvocation;
@@ -79,7 +105,7 @@ class LoggingServiceAspect implements Aspect
      * Method that will be called before real method.
      *
      * @param MethodInvocation $invocation Invocation
-     * @Before("execution(public app\Service\LoggingService::*(*))")
+     * @Before("execution(public App\Service\LoggingService::*(*))")
      */
     public function beforeMethodExecution(MethodInvocation $invocation)
     {
@@ -90,7 +116,7 @@ class LoggingServiceAspect implements Aspect
      * Method that will be called after real method.
      *
      * @param MethodInvocation $invocation Invocation
-     * @After("execution(public app\Service\LoggingService::*(*))")
+     * @After("execution(public App\Service\LoggingService::*(*))")
      */
     public function afterMethodExecution(MethodInvocation $invocation)
     {
@@ -99,7 +125,7 @@ class LoggingServiceAspect implements Aspect
 }
 ```
 
-### Run `app\Service\LoggingService` logging method
+### Run `App\Service\LoggingService` logging method
 
 cat `runtime/logging.log`
 

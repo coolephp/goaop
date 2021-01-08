@@ -3,7 +3,7 @@
 .php_cs.cache
 .phpunit.result.cache
 build/
-composer.lock
+#composer.lock #nikic/php-parser v4.6.0
 coverage/
 clover.xml
 phpunit.xml
