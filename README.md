@@ -16,7 +16,7 @@
 ## Installation
 
 ``` bash
-$ composer require coole/goaop -vvv
+$ composer require coolephp/goaop -vvv
 ```
 
 ## Usage
