@@ -37,7 +37,7 @@ class GoAopServiceProvider implements ServiceProviderInterface, BeforeRegisterAb
      */
     public function register(Container $app)
     {
-        $app->singleton(AspectKernel::class, function (Container $app) {
+        $app->singleton(AspectCooleKernel::class, function (Container $app) {
             $aspectKernel = AspectCooleKernel::getInstance();
             $aspectKernel->init($app['config']['goaop']->toArray());
 
@@ -46,7 +46,7 @@ class GoAopServiceProvider implements ServiceProviderInterface, BeforeRegisterAb
 
         $app->singleton(AspectContainer::class, function ($app) {
             /** @var AspectKernel $kernel */
-            $kernel = $app->make(AspectKernel::class);
+            $kernel = $app->make(AspectCooleKernel::class);
 
             return $kernel->getContainer();
         });

@@ -69,7 +69,7 @@ return [
      * Directories Black List
      */
     'excludePaths' => [
-        // base_path('app/Exception'),
+        base_path('app/Exception'),
     ],
 
     /*

@@ -1,6 +1,6 @@
-# package-skeleton
+# coole/goaop
 
-> A PHP package template repository. - 一个 PHP 软件包模板存储库。
+> Bringing the goaop to Coole. - 将 goaop 集成到 Coole。
 
 [![Tests](https://github.com/coolephp/goaop/workflows/Tests/badge.svg)](https://github.com/coolephp/goaop/actions)
 [![Check & fix styling](https://github.com/coolephp/goaop/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/coolephp/goaop/actions)
@@ -16,7 +16,7 @@
 ## Installation
 
 ``` bash
-$ composer require coolephp/goaop -vvv
+$ composer require coole/goaop -vvv
 ```
 
 ## Usage
