@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the coolephp/goaop.
  *
@@ -24,6 +26,6 @@ class LoggingServiceTest extends TestCase
     {
         $this->assertTrue(true);
         // $this->assertTrue(LoggingService::logging());
-        // $this->assertFileExists(__DIR__.'/runtime/logging.log');
+        // $this->assertFileExists(base_path('runtime/logging.log'));
     }
 }

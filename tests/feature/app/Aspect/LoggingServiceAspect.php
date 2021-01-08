@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the coolephp/goaop.
  *
@@ -25,7 +27,7 @@ class LoggingServiceAspect implements Aspect
      */
     public function beforeMethodExecution(MethodInvocation $invocation)
     {
-        file_put_contents(__DIR__.'/runtime/logging-before.log', 'this is a before method testing.'.PHP_EOL, FILE_APPEND);
+        file_put_contents(base_path('runtime/logging-before.log'), 'this is a before method testing.'.PHP_EOL, FILE_APPEND);
     }
 
     /**
@@ -36,6 +38,6 @@ class LoggingServiceAspect implements Aspect
      */
     public function afterMethodExecution(MethodInvocation $invocation)
     {
-        file_put_contents(__DIR__.'/runtime/logging-after.log', 'this is a after method testing.'.PHP_EOL, FILE_APPEND);
+        file_put_contents(base_path('runtime/logging-after.log'), 'this is a after method testing.'.PHP_EOL, FILE_APPEND);
     }
 }

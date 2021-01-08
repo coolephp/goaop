@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the coolephp/goaop.
  *
@@ -68,7 +70,7 @@ class GoAopServiceProvider implements ServiceProviderInterface, BeforeRegisterAb
         /** @var AspectContainer $aspectContainer */
         $aspectContainer = $app->make(AspectContainer::class);
 
-        // register aspect
+        // register aspects
         foreach ($app['config']['goaop']['aspects'] as $aspect) {
             $aspectContainer->registerAspect($app->make($aspect));
         }

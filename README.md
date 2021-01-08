@@ -21,6 +21,99 @@ $ composer require coolephp/goaop -vvv
 
 ## Usage
 
+### Configuration
+
+1. Copy `goaop/config/goaop.php` to `coole-skeleton/config/goaop.php`.
+2. Add a configuration for aspect.
+
+``` php
+<?php
+return [
+    /*
+     * AOP Debug Mode
+     */
+    'debug' => env('GOAOP_DEBUG', env('APP_DEBUG', false)),
+    
+    ...
+    
+    /*
+     * Yours aspects
+     */
+    'aspects' => [
+        \app\Service\LoggingServiceAspect::class,
+    ],
+];
+```
+
+### Create a class `app\Service\LoggingService`
+
+``` php
+<?php
+
+namespace app\Service;
+
+class LoggingService
+{
+    public static function logging()
+    {
+        return true;
+    }
+}
+```
+
+### Create a aspect `app\Service\LoggingServiceAspect`
+
+``` php
+<?php
+
+namespace app\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+
+class LoggingServiceAspect implements Aspect
+{
+    /**
+     * Method that will be called before real method.
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before("execution(public app\Service\LoggingService::*(*))")
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        file_put_contents(base_path('runtime/logging.log'), 'this is a before method testing.'.PHP_EOL, FILE_APPEND);
+    }
+
+    /**
+     * Method that will be called after real method.
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @After("execution(public app\Service\LoggingService::*(*))")
+     */
+    public function afterMethodExecution(MethodInvocation $invocation)
+    {
+        file_put_contents(base_path('runtime/logging.log'), 'this is a after method testing.'.PHP_EOL, FILE_APPEND);
+    }
+}
+```
+
+### Run `app\Service\LoggingService` logging method
+
+cat `runtime/logging.log`
+
+``` bash
+───────┬───────────────────────────────────────────────────────────────────
+       │ File: runtime/logging.log
+───────┼───────────────────────────────────────────────────────────────────
+   1   │ this is a before method testing.
+   2   │ this is a after method testing.
+───────┴───────────────────────────────────────────────────────────────────
+```
+
+###
+
 ## Testing
 
 ``` bash
